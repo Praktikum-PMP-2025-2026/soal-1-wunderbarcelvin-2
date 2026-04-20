@@ -104,7 +104,10 @@ void recurr(int* temp_array, int* nums, int idx, int* next){ //ini bakal digunai
     //next itu nilai yang bakal digunaian [OUTPUT]
 
     //neglect dulu kasus semuanya nilainya -1
-    if(idx==*nums) return;
+    if((idx==*nums)||(idx+1>=*nums)){
+        *next=0;
+        return;
+    }
 
     if(temp_array[idx+1]!=-1){
         *next = temp_array[idx+1];
