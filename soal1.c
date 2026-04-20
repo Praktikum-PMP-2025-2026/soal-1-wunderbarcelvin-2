@@ -50,6 +50,7 @@ void load(int* temp_array, int* nums){
         {
             token = strtok(NULL, " ");
             int temp = atoi(token);
+            //printf("[DEBUG] Nilai masukan: %d\n", temp);
             temp_array[i] = temp;
         }
         //harusnya udah ditampung semua ke array
@@ -62,31 +63,37 @@ void normalize(int* temp_array, int* nums){
     
     for (int i = 0; i < size; i++)
     {
-        if(temp_array[i]==-1){
+        recurr(temp_array, nums, i, &next); //update nilai next
 
-            if(i==size-1) {temp_array[i]=before;}
+        if(temp_array[i]==-1){ //ini kalau nilainya -1
             
-            else{
-                recurr(temp_array, nums, i, &next);
+            if(i==0){ //ini jikalau berada di indeks depan
+                temp_array[i]=next;
+            } else if (i==size-1)
+            {
+                temp_array[i]=before;
+            } //ini ketika mencapai indeks terakhir
+            
+            
+            else{ //kasus di depan atau di tengah array
                 if(next==0){
                     temp_array[i]=before;
-                    
                 } else{
                     float avg = (before+next)/2;
                     temp_array[i] = floor(avg);
                 }
-
-                printf("[DEBUG] NEXT: %d\n", next);
-                printf("[DEBUG] BEFORE: %d\n", before);
             }
-            
+
              //direassign ulang preceeding valuenya
         }
 
-        before = temp_array[i];
+        printf("[DEBUG] NEXT: %d\n", next);
+        printf("[DEBUG] BEFORE: %d\n", before);
 
         printf("[DEBUG] INDEKS KE-%d\n", i);
         printf("[DEBUG] NILAI: %d\n", temp_array[i]);
+
+        before = temp_array[i]; //update nilai before
     }
     
 }
@@ -102,7 +109,7 @@ void recurr(int* temp_array, int* nums, int idx, int* next){ //ini bakal digunai
     if(temp_array[idx+1]!=-1){
         *next = temp_array[idx+1];
         return;
-    } else if (temp_array[idx-1]==-1){
+    } else if (temp_array[idx+1]==-1){
         recurr(temp_array, nums, idx+1, next);
     }
 }
