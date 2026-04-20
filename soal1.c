@@ -87,11 +87,11 @@ void normalize(int* temp_array, int* nums){
              //direassign ulang preceeding valuenya
         }
 
-        printf("[DEBUG] NEXT: %d\n", next);
-        printf("[DEBUG] BEFORE: %d\n", before);
+        //printf("[DEBUG] NEXT: %d\n", next);
+        //printf("[DEBUG] BEFORE: %d\n", before);
 
-        printf("[DEBUG] INDEKS KE-%d\n", i);
-        printf("[DEBUG] NILAI: %d\n", temp_array[i]);
+        //printf("[DEBUG] INDEKS KE-%d\n", i);
+        //printf("[DEBUG] NILAI: %d\n", temp_array[i]);
 
         before = temp_array[i]; //update nilai before
     }
